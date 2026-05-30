@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPP — RDX-6205-2RS-DE-2023-0094 | RdxTechno Bearings GmbH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#0D1B2A;--blue:#1565C0;--lblue:#1976D2;
+    --teal:#00796B;--green:#2E7D32;--amber:#E65100;
+    --red:#B71C1C;--purple:#6A1B9A;
+    --bg:#F4F7FA;--card:#FFFFFF;--border:#E0E6EF;
+    --text:#1A2332;--text2:#4A5568;--text3:#8A9BB0;
+    --mono:'DM Mono',monospace;--sans:'DM Sans',sans-serif;
+  }
+  body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:40px}
+
+  /* TOP BAR */
+  .topbar{background:var(--navy);padding:10px 0;border-bottom:3px solid var(--blue)}
+  .topbar-inner{max-width:700px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between}
+  .topbar-left{display:flex;align-items:center;gap:10px}
+  .rdx-logo{width:32px;height:32px;border-radius:7px;background:linear-gradient(135deg,#0D47A1,#1976D2);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:500;font-size:11px;color:#fff;letter-spacing:0.5px}
+  .topbar-name{font-size:13px;font-weight:500;color:#E6F1FB}
+  .topbar-right{font-size:11px;color:#546E7A;font-family:var(--mono)}
+
+  .page{max-width:700px;margin:0 auto;padding:20px}
+
+  /* HERO */
+  .hero{background:var(--card);border:0.5px solid var(--border);border-radius:14px;padding:18px 20px;margin-bottom:12px;display:flex;gap:14px;align-items:flex-start;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+  .brand-block{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#0D47A1,#1976D2);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:500;font-size:14px;color:#fff;letter-spacing:0.5px;flex-shrink:0}
+  .hero-right{flex:1;min-width:0}
+  .hero-title{font-size:18px;font-weight:600;color:var(--text);line-height:1.3;margin-bottom:2px}
+  .hero-sub{font-size:12px;color:var(--text2);margin-bottom:10px}
+  .badge-row{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+  .badge{font-size:10px;padding:3px 9px;border-radius:20px;font-weight:500}
+  .b-eu{background:#E8F5E9;color:#1B5E20}
+  .b-espr{background:#E3F2FD;color:#0D47A1}
+  .b-circ{background:#E0F2F1;color:#004D40}
+  .b-active{background:#FFF3E0;color:#E65100}
+  .uid-row{display:flex;align-items:center;gap:8px;background:#F4F7FA;border-radius:8px;padding:8px 12px;border:0.5px solid var(--border)}
+  .uid-label{font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;flex-shrink:0}
+  .uid-val{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--text)}
+  .verified{margin-left:auto;display:flex;align-items:center;gap:4px;font-size:10px;font-weight:600;color:#1B5E20;background:#E8F5E9;padding:3px 9px;border-radius:20px;white-space:nowrap}
+
+  /* SECTION */
+  .section{background:var(--card);border:0.5px solid var(--border);border-radius:14px;margin-bottom:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.04)}
+  .sec-hd{display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:0.5px solid var(--border);background:#FAFBFD}
+  .sec-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .sec-title{font-size:13px;font-weight:600;color:var(--text)}
+  .sec-body{padding:14px 16px}
+
+  /* GRID FIELDS */
+  .g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .field{background:#F4F7FA;border-radius:8px;padding:9px 11px;border:0.5px solid #EBF0F6}
+  .fl{font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px}
+  .fv{font-size:13px;font-weight:500;color:var(--text);line-height:1.3}
+  .fv.mono{font-family:var(--mono);font-size:11.5px}
+  .fv.green{color:var(--green);font-weight:600}
+  .funit{font-size:10px;color:var(--text3);font-weight:400;margin-left:2px}
+  .divider{height:0.5px;background:var(--border);margin:12px 0}
+
+  /* MATERIALS */
+  .mat-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid var(--border)}
+  .mat-row:last-child{border-bottom:none}
+  .mat-name{font-size:12.5px;font-weight:500;color:var(--text)}
+  .mat-grade{font-size:10.5px;color:var(--text3);margin-top:1px}
+  .mat-right{display:flex;align-items:center;gap:10px}
+  .bar-wrap{width:90px;height:5px;background:#EBF0F6;border-radius:3px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:3px}
+  .mat-pct{font-size:12.5px;font-weight:600;color:var(--text);font-family:var(--mono);min-width:42px;text-align:right}
+
+  /* SOH */
+  .soh-wrap{display:flex;align-items:center;gap:16px;padding:4px 0}
+  .soh-ring{width:80px;height:80px;position:relative;flex-shrink:0}
+  .soh-ring svg{width:80px;height:80px}
+  .soh-num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:17px;font-weight:700;color:var(--text);font-family:var(--mono)}
+  .soh-note{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:8px}
+  .rul-badge{display:inline-flex;align-items:center;gap:6px;background:#E8F5E9;color:#1B5E20;font-size:11.5px;font-weight:600;padding:5px 12px;border-radius:20px}
+
+  /* TIMELINE */
+  .tl-item{display:flex;gap:12px;padding:9px 0;border-bottom:0.5px solid var(--border);align-items:flex-start}
+  .tl-item:last-child{border-bottom:none}
+  .tl-dot{width:8px;height:8px;border-radius:50%;margin-top:5px;flex-shrink:0}
+  .tl-date{font-family:var(--mono);font-size:10.5px;color:var(--text3);min-width:92px;margin-top:3px}
+  .tl-event{font-size:12.5px;font-weight:600;color:var(--text)}
+  .tl-note{font-size:11px;color:var(--text2);margin-top:2px;line-height:1.5}
+
+  /* SOC */
+  .soc-row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:0.5px solid var(--border)}
+  .soc-row:last-child{border-bottom:none}
+  .soc-name{font-size:12.5px;font-weight:500;color:var(--text)}
+  .soc-sub{font-size:10.5px;color:var(--text3);margin-top:1px}
+  .soc-tag{font-size:10px;padding:3px 10px;border-radius:20px;font-weight:600;white-space:nowrap;flex-shrink:0;margin-top:2px}
+  .s-safe{background:#E8F5E9;color:#1B5E20}
+  .s-warn{background:#FFF3E0;color:#E65100}
+  .s-remove{background:#FCE4EC;color:#880E4F}
+
+  /* EOL */
+  .eol-step{display:flex;gap:12px;padding:9px 0;border-bottom:0.5px solid var(--border);align-items:flex-start}
+  .eol-step:last-child{border-bottom:none}
+  .step-num{width:24px;height:24px;border-radius:50%;background:#E3F2FD;color:#0D47A1;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+  .step-title{font-size:12.5px;font-weight:600;color:var(--text)}
+  .step-desc{font-size:11.5px;color:var(--text2);margin-top:2px;line-height:1.5}
+
+  /* ACCESS */
+  .access-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .ac-card{border-radius:10px;padding:12px 13px;border:0.5px solid var(--border)}
+  .ac-card-title{font-size:11px;font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.06em}
+  .ac-item{font-size:11px;color:var(--text2);line-height:1.7;display:flex;gap:5px}
+  .ac-item::before{content:"✓";color:#1B5E20;font-weight:700;font-size:10px;margin-top:2px;flex-shrink:0}
+  .ac-item.no::before{content:"✗";color:#C62828}
+  .ac-item.no{color:#C0C8D4}
+
+  /* FOOTER */
+  .footer-section{background:var(--card);border:0.5px solid var(--border);border-radius:14px;padding:12px 16px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--text3);box-shadow:0 1px 4px rgba(0,0,0,0.04)}
+  .footer-left{display:flex;align-items:center;gap:8px}
+  .footer-logo{width:22px;height:22px;border-radius:5px;background:linear-gradient(135deg,#0D47A1,#1976D2);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:8px;color:#fff;font-weight:600}
+
+  /* DISCLAIMER */
+  .disclaimer{background:#FFFDE7;border:1.5px solid #F9A825;border-radius:12px;padding:14px 18px;margin-top:4px}
+  .disc-title{font-size:12px;font-weight:700;color:#E65100;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+  .disc-text{font-size:11.5px;color:#5D4037;line-height:1.7}
+  .disc-text b{color:#3E2723;font-weight:600}
+
+  @media(max-width:520px){
+    .g3{grid-template-columns:1fr 1fr}
+    .access-grid{grid-template-columns:1fr}
+    .hero{flex-direction:column}
+    .brand-block{width:44px;height:44px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <div class="rdx-logo">RDX</div>
+      <span class="topbar-name">RdxTechno Bearings GmbH · Digital Product Passport</span>
+    </div>
+    <div class="topbar-right">ESPR 2024/1781</div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="brand-block">RDX</div>
+    <div class="hero-right">
+      <div class="hero-title">Deep Groove Ball Bearing — 6205-2RS</div>
+      <div class="hero-sub">RdxTechno Bearings GmbH · Essen, NRW, Germany</div>
+      <div class="badge-row">
+        <span class="badge b-eu">EU ESPR Compliant</span>
+        <span class="badge b-espr">ESPR (EU) 2024/1781</span>
+        <span class="badge b-circ">Circularity Score: A</span>
+        <span class="badge b-active">In Service</span>
+      </div>
+      <div class="uid-row">
+        <span class="uid-label">DPP ID</span>
+        <span class="uid-val">RDX-6205-2RS-DE-2023-0094</span>
+        <span class="verified">✓ Verified</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: IDENTITY -->
+  <div class="section">
+    <div class="sec-hd">
+      <div class="sec-dot" style="background:var(--blue)"></div>
+      <span class="sec-title">Product Identity &amp; Origin</span>
+    </div>
+    <div class="sec-body">
+      <div class="g3">
+        <div class="field"><div class="fl">Model / Type</div><div class="fv">6205-2RS</div></div>
+        <div class="field"><div class="fl">Bore diameter</div><div class="fv">25<span class="funit">mm</span></div></div>
+        <div class="field"><div class="fl">Outer diameter</div><div class="fv">52<span class="funit">mm</span></div></div>
+      </div>
+      <div class="g3" style="margin-top:8px">
+        <div class="field"><div class="fl">Width</div><div class="fv">15<span class="funit">mm</span></div></div>
+        <div class="field"><div class="fl">Total weight</div><div class="fv">137<span class="funit">g</span></div></div>
+        <div class="field"><div class="fl">Bearing series</div><div class="fv">Deep groove ball</div></div>
+      </div>
+      <div class="divider"></div>
+      <div class="g2">
+        <div class="field"><div class="fl">Manufacturer</div><div class="fv">RdxTechno Bearings GmbH</div></div>
+        <div class="field"><div class="fl">Production site</div><div class="fv">Essen, NRW, Germany</div></div>
+      </div>
+      <div class="g3" style="margin-top:8px">
+        <div class="field"><div class="fl">Manufacture date</div><div class="fv">31 July 2023</div></div>
+        <div class="field"><div class="fl">Batch number</div><div class="fv mono">BT-2023-0889-R</div></div>
+        <div class="field"><div class="fl">Serial number</div><div class="fv mono">SN-0094-6205DE</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: MATERIALS -->
+  <div class="section">
+    <div class="sec-hd">
+      <div class="sec-dot" style="background:var(--green)"></div>
+      <span class="sec-title">Material Composition — Bill of Materials</span>
+    </div>
+    <div class="sec-body">
+      <div class="mat-row">
+        <div><div class="mat-name">Bearing rings — inner + outer</div><div class="mat-grade">100Cr6 / SAE 52100 chrome steel</div></div>
+        <div class="mat-right"><div class="bar-wrap"><div class="bar-fill" style="width:72%;background:var(--blue)"></div></div><div class="mat-pct">72.4%</div></div>
+      </div>
+      <div class="mat-row">
+        <div><div class="mat-name">Rolling balls × 9</div><div class="mat-grade">100Cr6 hardened steel · Grade 10 · ø7.938mm</div></div>
+        <div class="mat-right"><div class="bar-wrap"><div class="bar-fill" style="width:18%;background:var(--blue)"></div></div><div class="mat-pct">18.1%</div></div>
+      </div>
+      <div class="mat-row">
+        <div><div class="mat-name">Cage / retainer</div><div class="mat-grade">PA66 glass-fibre reinforced nylon — 25% GF</div></div>
+        <div class="mat-right"><div class="bar-wrap"><div class="bar-fill" style="width:6%;background:#42A5F5"></div></div><div class="mat-pct">6.2%</div></div>
+      </div>
+      <div class="mat-row">
+        <div><div class="mat-name">Seals × 2</div><div class="mat-grade">Nitrile rubber (NBR) — REACH SOC declared</div></div>
+        <div class="mat-right"><div class="bar-wrap"><div class="bar-fill" style="width:3%;background:#42A5F5"></div></div><div class="mat-pct">2.9%</div></div>
+      </div>
+      <div class="mat-row">
+        <div><div class="mat-name">Grease fill</div><div class="mat-grade">Lithium-complex NLGI 2 · 0.55g — 35% free volume fill</div></div>
+        <div class="mat-right"><div class="bar-wrap"><div class="bar-fill" style="width:1%;background:#66BB6A"></div></div><div class="mat-pct">0.4%</div></div>
+      </div>
+      <div class="divider"></div>
+      <div class="g3">
+        <div class="field"><div class="fl">Recycled steel content</div><div class="fv green">34<span class="funit">%</span></div></div>
+        <div class="field"><div class="fl">Product carbon footprint</div><div class="fv">2.8<span class="funit">kg CO₂e</span></div></div>
+        <div class="field"><div class="fl">Critical raw materials</div><div class="fv green">None declared</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: STATE OF HEALTH -->
+  <div class="section">
+    <div class="sec-hd">
+      <div class="sec-dot" style="background:var(--green)"></div>
+      <span class="sec-title">State of Health &amp; Operational Data</span>
+    </div>
+    <div class="sec-body">
+      <div class="soh-wrap">
+        <div class="soh-ring">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="30" stroke="#EBF0F6" stroke-width="8"/>
+            <circle cx="40" cy="40" r="30" stroke="#2E7D32" stroke-width="8"
+              stroke-dasharray="163" stroke-dashoffset="26"
+              stroke-linecap="round" transform="rotate(-90 40 40)"/>
+          </svg>
+          <div class="soh-num">84%</div>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px">State of Health (SoH)</div>
+          <div class="soh-note">Bearing operating within normal parameters. Mild wear detected on outer raceway. Vibration reading at ISO 10816-3 Zone A/B boundary — advisory monitoring recommended.</div>
+          <div class="rul-badge">⏱ Remaining Useful Life: ~14 months</div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="g3">
+        <div class="field"><div class="fl">Operating hours</div><div class="fv mono">4,820<span class="funit" style="font-family:var(--sans)">hrs</span></div></div>
+        <div class="field"><div class="fl">Load cycles</div><div class="fv mono">1.24M<span class="funit" style="font-family:var(--sans)">cycles</span></div></div>
+        <div class="field"><div class="fl">Max temp recorded</div><div class="fv mono">68<span class="funit" style="font-family:var(--sans)">°C</span></div></div>
+      </div>
+      <div class="g3" style="margin-top:8px">
+        <div class="field"><div class="fl">Vibration (RMS)</div><div class="fv mono">2.3<span class="funit" style="font-family:var(--sans)">mm/s</span></div></div>
+        <div class="field"><div class="fl">Speed range</div><div class="fv mono">800–3,200<span class="funit" style="font-family:var(--sans)">RPM</span></div></div>
+        <div class="field"><div class="fl">Dynamic load rating C</div><div class="fv mono">14.0<span class="funit" style="font-family:var(--sans)">kN</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: MAINTENANCE -->
+  <div class="section">
+    <div class="sec-hd">
+      <div class="sec-dot" style="background:var(--amber)"></div>
+      <span class="sec-title">Maintenance History</span>
+    </div>
+    <div class="sec-body">
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--blue)"></div>
+        <div class="tl-date">31 Jul 2023</div>
+        <div><div class="tl-event">Bearing manufactured — RdxTechno Bearings GmbH, Essen</div><div class="tl-note">Batch BT-2023-0889-R · Serial SN-0094-6205DE · QR label applied · DPP created</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--blue)"></div>
+        <div class="tl-date">14 Sep 2023</div>
+        <div><div class="tl-event">Bearing installed — Machine ID: CNC-7, Production Line 3</div><div class="tl-note">Customer facility · Installed by technician T-042 · Housing QR registered to DPP</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--blue)"></div>
+        <div class="tl-date">04 Mar 2024</div>
+        <div><div class="tl-event">Routine lubrication — grease replenishment</div><div class="tl-note">NLGI 2 lithium-complex grease · 3.2g added · Vibration 1.1 mm/s — within spec</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--amber)"></div>
+        <div class="tl-date">18 Nov 2024</div>
+        <div><div class="tl-event">IoT alert — temperature spike (68°C peak)</div><div class="tl-note">Root cause: coolant flow restriction — identified and resolved · No bearing damage confirmed at follow-up</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--blue)"></div>
+        <div class="tl-date">10 Feb 2025</div>
+        <div><div class="tl-event">Scheduled inspection — vibration + visual analysis</div><div class="tl-note">SoH assessed at 84% · Outer raceway minor wear noted · Next inspection due: Aug 2025</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: SOC -->
+  <div class="section">
+    <div class="sec-hd">
+      <div class="sec-dot" style="background:var(--purple)"></div>
+      <span class="sec-title">Substances of Concern (SOC) — REACH Declaration</span>
+    </div>
+    <div class="sec-body">
+      <div class="soc-row">
+        <div><div class="soc-name">Chromium — in steel alloy (100Cr6)</div><div class="soc-sub">Bound in steel matrix — non-leachable form · No release under normal use</div></div>
+        <span class="soc-tag s-safe">Safe — bound form</span>
+      </div>
+      <div class="soc-row">
+        <div><div class="soc-name">Lithium — in grease</div><div class="soc-sub">Lithium-complex base grease · trace quantity 0.55g · EU Critical Raw Material list</div></div>
+        <span class="soc-tag s-warn">Recycle separately</span>
+      </div>
+      <div class="soc-row">
+        <div><div class="soc-name">Acrylonitrile — in NBR rubber seals</div><div class="soc-sub">REACH SVHC candidate substance · Remove seals before EAF steel recycling</div></div>
+        <span class="soc-tag s-remove">Remove before recycling</span>
+      </div>
+      <div class="soc-row">
+        <div><div class="soc-name">PA66 glass-fibre cage</div><div class="soc-sub">Non-hazardous · Separate polymer stream — not EAF compatible</div></div>
+        <span class="soc-tag s-safe">Non-hazardous</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: EOL -->
+  <div class="section">
+    <div class="sec-hd">
+      <div class="sec-dot" style="background:var(--green)"></div>
+      <span class="sec-title">End-of-Life Instructions</span>
+    </div>
+    <div class="sec-body">
+      <div class="eol-step">
+        <div class="step-num">1</div>
+        <div><div class="step-title">Assess for remanufacturing first</div><div class="step-desc">If SoH &gt; 60%: return to RdxTechno for remanufacturing. Use pre-paid return label below. Remanufactured bearing issued with a new DPP and 12-month warranty. Saves ~80% of original manufacturing CO₂e.</div></div>
+      </div>
+      <div class="eol-step">
+        <div class="step-num">2</div>
+        <div><div class="step-title">Disassembly procedure</div><div class="step-desc">Remove seals using tool ST-3. Extract cage and balls. Separate into: <b>Stream A</b> — steel rings + balls &nbsp;|&nbsp; <b>Stream B</b> — PA66 nylon cage &nbsp;|&nbsp; <b>Stream C</b> — NBR rubber seals &nbsp;|&nbsp; <b>Stream D</b> — grease residue (hazardous waste)</div></div>
+      </div>
+      <div class="eol-step">
+        <div class="step-num">3</div>
+        <div><div class="step-title">Steel recovery — Stream A</div><div class="step-desc">100Cr6 steel rings and balls → certified EAF steel recycler. Target: 98% metal recovery by weight. 100Cr6 is 100% recyclable with no quality degradation in EAF process.</div></div>
+      </div>
+      <div class="eol-step">
+        <div class="step-num">4</div>
+        <div><div class="step-title">Return / drop-off point</div><div class="step-desc"><b>RdxTechno Bearings GmbH</b> · Indianstr. 108 · 45145 Essen, NRW, Germany · Also accepted at SKF, Schaeffler, or NSK authorised service centres across Germany and EU.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: ACCESS LAYERS -->
+  <div class="section">
+    <div class="sec-hd">
+      <div class="sec-dot" style="background:#37474F"></div>
+      <span class="sec-title">Data Access Layers — Role-Based Access Control</span>
+    </div>
+    <div class="sec-body">
+      <div class="access-grid">
+        <div class="ac-card" style="background:#F4F7FA">
+          <div class="ac-card-title" style="color:#37474F">Public</div>
+          <div class="ac-item">Product ID &amp; model</div>
+          <div class="ac-item">Carbon footprint (PCF)</div>
+          <div class="ac-item">Circularity score</div>
+          <div class="ac-item">End-of-life guide</div>
+          <div class="ac-item no">Alloy formula / ratios</div>
+          <div class="ac-item no">Customer identity</div>
+        </div>
+        <div class="ac-card" style="background:#E8F5E9">
+          <div class="ac-card-title" style="color:#1B5E20">Supply chain / Recycler</div>
+          <div class="ac-item">SOC flags &amp; warnings</div>
+          <div class="ac-item">Disassembly steps</div>
+          <div class="ac-item">Material streams A–D</div>
+          <div class="ac-item">Maintenance event log</div>
+          <div class="ac-item no">Exact alloy ratios</div>
+          <div class="ac-item no">Other customers' data</div>
+        </div>
+        <div class="ac-card" style="background:#FFF3E0">
+          <div class="ac-card-title" style="color:#E65100">Authority only</div>
+          <div class="ac-item">Full BOM + exact ratios</div>
+          <div class="ac-item">Exact SOC quantities</div>
+          <div class="ac-item">Production site records</div>
+          <div class="ac-item">Compliance certificates</div>
+          <div class="ac-item">All layers combined</div>
+          <div class="ac-item">Audit trail (blockchain)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER BAR -->
+  <div class="footer-section">
+    <div class="footer-left">
+      <div class="footer-logo">RDX</div>
+      <span>RdxTechno Bearings GmbH · Indianstr. 108 · 45145 Essen, NRW, DE</span>
+    </div>
+    <div>Last updated: 21 May 2025 · v2.1 · AAS IDTA 01001</div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <div class="disc-title">⚠ Illustrative Data — Academic Prototype</div>
+    <div class="disc-text">
+      <b>RdxTechno Bearings GmbH is a fictitious company</b> created solely for academic and research demonstration purposes. The address Indianstr. 108, 45145 Essen does not correspond to any real business. All data in this Digital Product Passport — including product specifications, operational metrics, maintenance history, and carbon footprint — is <b>illustrative synthetic data</b> calculated from publicly available standards (ISO 15, ISO 10816-3, ISO 14067, EU ESPR 2024/1781). This prototype demonstrates the structure and functionality of a real-world DPP. It does not represent any actual product, company, or transaction. <b>Not for commercial use.</b>
+    </div>
+  </div>
+
+</div><!-- end page -->
+</body>
+</html>
